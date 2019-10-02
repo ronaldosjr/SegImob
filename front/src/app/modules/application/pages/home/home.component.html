@@ -1,0 +1,25 @@
+<div class="list-crud">
+
+<mat-card> 
+  <mat-card-title>Vendas do dia</mat-card-title>
+  <mat-list role="list">
+      <mat-list-item *ngFor="let item of sales" role="listitem" >
+          <p matLine>Vendedor: {{item.seller.name}}</p>
+          <p matLine>Total Venda: {{item.total | currency: 'R$'}}</p>
+          <mat-divider></mat-divider>
+         </mat-list-item>      
+    </mat-list>    
+</mat-card>
+
+<Br>
+<mat-card> 
+    <mat-card-title>Comissões por vendedor</mat-card-title>
+    <mat-list role="list">
+        <mat-list-item *ngFor="let item of comissions" role="listitem" >
+          <p matLine>Vendedor: {{item.sellerName}}</p>
+          <p matLine>Total Comissão: {{item.comission | currency: 'R$'}}</p>
+          <mat-divider></mat-divider>
+        </mat-list-item>      
+    </mat-list>    
+  </mat-card>
+</div>

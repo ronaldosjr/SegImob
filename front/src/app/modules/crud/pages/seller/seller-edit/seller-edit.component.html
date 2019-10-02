@@ -1,0 +1,20 @@
+<app-crud-edit
+  titlePage="Vendedores"
+  [promiseGravar]="promiseGravar"
+  [backToList]="backToList.bind(this)"
+  [formSubmited]="formSubmited.bind(this)"
+  [f]="f">
+  <form #f="ngForm" (ngSubmit)="formSubmited()">
+    <mat-form-field>
+      <input
+        matInput
+        name="descricao"
+        placeholder="Nome"
+        [(ngModel)]="entity.name"
+        required
+        #descriptionField="ngModel">
+      <mat-error *ngIf="descriptionField.invalid">Nome deve ser informada</mat-error>
+    </mat-form-field>   
+  </form>
+
+</app-crud-edit>

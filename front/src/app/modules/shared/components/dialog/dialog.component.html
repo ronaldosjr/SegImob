@@ -1,0 +1,13 @@
+<div style="max-width: 280px">
+  <h2 mat-dialog-title style="margin-bottom: 05px">{{titleRonaldo}}</h2>
+  <mat-divider style="margin-bottom: 5px"></mat-divider>
+  <mat-dialog-content>
+  <span class="mat-body-1">
+  <span [innerHtml]="question"></span>
+    </span>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Não</button>
+    <button mat-raised-button color="primary" [mat-dialog-close]="true">Sim</button>
+  </mat-dialog-actions>
+</div>

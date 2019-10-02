@@ -1,0 +1,83 @@
+<app-crud-edit
+  titlePage="Vendas"
+  [promiseGravar]="promiseGravar"
+  [backToList]="backToList.bind(this)"
+  [formSubmited]="formSubmited.bind(this)"
+  [f]="f">
+  <form #f="ngForm" (ngSubmit)="formSubmited()">
+    <div fxLayout="row" fxLayoutAlign="space-between center" >
+      <mat-form-field>
+        <input
+          type="text"
+          placeholder="Vendedor"
+          aria-label="Number"
+          matInput
+          [formControl]="searchPerson"
+          [matAutocomplete]="autoPerson">
+        <mat-autocomplete #autoPerson="matAutocomplete">
+          <mat-option *ngFor="let item of sellers" [value]="item.name" (onSelectionChange)="entity.seller = item; entity.sellerId = item?.id;">
+            {{ item.name }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="space-between center" >
+      <mat-form-field>
+        <input
+          type="text"
+          placeholder="Produto"
+          aria-label="Number"
+          matInput
+          [formControl]="searchProduct"
+          [matAutocomplete]="autoProduct">
+        <mat-autocomplete #autoProduct="matAutocomplete">
+          <mat-option *ngFor="let item of products" [value]="item.name" (onSelectionChange)="product = item">
+            {{ item.name }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+      <mat-form-field style="margin-left: 10px;">
+        <mat-label>Quantidade</mat-label>
+        <input
+          matInput
+          name="price"
+          [(ngModel)]="amount"
+          required
+          [imask]="msk"
+          unmask="typed"
+          #descriptionField="ngModel">
+        <!-- <span matPrefix>R$&nbsp;</span> -->
+        <mat-error *ngIf="descriptionField.invalid">Quantidade deve ser informado</mat-error>
+      </mat-form-field>    
+      <button mat-button (click)="addOnSalesItem(product)" type="button" [disabled]="!amount || !product">
+          <i class="material-icons">
+              save
+          </i>
+        </button>         
+    </div>
+    <mat-list>
+      <mat-list-item *ngFor="let item of entity.salesItem;index as i" >
+        <!-- <mat-icon matListIcon>folder</mat-icon> -->
+        <h3 matLine> {{item.product.name}} </h3>
+        <p matLine>
+          <span> Preço: {{item.product.price | currency: 'R$'}}</span>
+          <span> Quantidade: {{item.amount}} </span>
+          <span> Total: {{item.total | currency:'R$ '}}</span>
+        </p>
+        <mat-action-list>
+          <button mat-list-item (click)="delete(i)">  
+            <i class="material-icons">
+              delete_forever
+            </i>
+          </button>
+        </mat-action-list>
+      </mat-list-item>
+    </mat-list>
+  </form>
+
+  <p>Total: {{ entity.total | currency:'R$'}} </p> 
+
+</app-crud-edit>
+
+
+

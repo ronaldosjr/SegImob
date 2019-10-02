@@ -1,0 +1,10 @@
+@import "../../../../../assets/styles/variables";
+@import "../../../../../assets/styles/mixings";
+
+.loader-daora{
+
+  background-color: transparent;
+  margin-top: 5px;
+  @include fully-centered;
+  @include title-centered;
+}

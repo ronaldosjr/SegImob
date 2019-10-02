@@ -1,0 +1,29 @@
+<app-loader></app-loader>
+<div class="list-crud">
+  <mat-card>
+    <mat-card-content>
+      <ng-content></ng-content>
+    </mat-card-content>
+    <mat-card-actions style="float:right; padding-right:10px;">
+      <button
+        mat-button
+        color="primary"
+        (click)="backToList()"
+      >Cancelar</button>
+      <button
+        mat-raised-button
+        [promiseBtn]="promiseGravar"
+        (click)="formSubmited()"
+        color="primary"
+        [disabled]="!f.valid"
+      ><i class="material-icons">
+        save
+      </i>
+        Gravar</button>
+    </mat-card-actions>
+    <br>
+    <br>
+  </mat-card>
+
+
+</div>

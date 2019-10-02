@@ -1,0 +1,40 @@
+<app-crud-list
+  titleRonaldo="Vendas"
+  newButtonCaption = "Nova Venda"
+  [setFilter]="setFilter.bind(this)"
+  [newRecord]="newRecord.bind(this)"
+  [editRecord]="editRecord.bind(this)"
+  [deleteRecord]="deleteRecord.bind(this)"
+  [dataSource]="dataSource"
+  [displayedColumns]="displayedColumns"
+
+>
+  <table mat-table [dataSource]="dataSource"  matSort class="mat-elevation-z8" style="width: 100%">
+    <ng-container matColumnDef="seller">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Vendedor </th>
+      <td mat-cell *matCellDef="let element"> {{element.seller | slice:0:15}} </td>
+    </ng-container>
+    <ng-container matColumnDef="total">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Valor </th>
+      <td mat-cell *matCellDef="let element"> {{element.total | currency:'R$ '}} </td>
+    </ng-container>
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>  </th>
+      <td mat-cell *matCellDef="let element">
+        <!-- <button mat-button (click)="editRecord(element.id)">
+          <i class="material-icons">
+            edit
+          </i>
+        </button> -->
+        <button mat-button (click)="delete(element.id)">
+          <i class="material-icons">
+            delete_forever
+          </i>
+        </button>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</app-crud-list>
+

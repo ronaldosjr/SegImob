@@ -1,0 +1,56 @@
+<app-loader></app-loader>
+<div class="list-crud">
+  <div fxLayout="row" fxLayoutAlign="center center">
+    <mat-form-field appearance="outline">
+      <mat-label>Pesquisar</mat-label>
+      <input matInput (change)="setFilter($event.target.value)" (keyup)="setFilter($event.target.value)">
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+    <div class="padding-bottom" style="margin-left: 24px" *ngIf="showAddButton">
+      <button mat-fab (click)="newRecord()"
+              color="primary" [matTooltip]="newButtonCaption">
+        <mat-icon aria-label="newButtonCaption">add</mat-icon>
+      </button>
+    </div>
+
+    <div class="padding-bottom" style="margin-left: 8px" *ngFor="let ronaldo of customButtons">
+      <button *ngIf="!ronaldo.style || ronaldo.style == 'basic'" mat-button (click)="ronaldo.action()"
+              color="primary" matTooltip="ronaldo.caption">
+        <mat-icon *ngIf="ronaldo.icon" aria-label="ronaldo.caption">{{ronaldo.icon}}</mat-icon>
+        {{ronaldo.caption}}
+      </button>
+
+      <button *ngIf="ronaldo.style == 'raised'" mat-raised-button (click)="ronaldo.action()"
+              color="primary" matTooltip="ronaldo.caption">
+        <mat-icon *ngIf="ronaldo.icon" aria-label="ronaldo.caption">{{ronaldo.icon}}</mat-icon>
+        {{ronaldo.caption}}
+      </button>
+
+      <button *ngIf="ronaldo.style == 'stroked'" mat-stroked-button (click)="ronaldo.action()"
+              color="primary" matTooltip="ronaldo.caption">
+        <mat-icon *ngIf="ronaldo.icon" aria-label="ronaldo.caption">{{ronaldo.icon}}</mat-icon>
+        {{ronaldo.caption}}
+      </button>
+
+      <button *ngIf="ronaldo.style == 'icon'" mat-icon-button (click)="ronaldo.action()"
+              color="primary" matTooltip="ronaldo.caption">
+        <mat-icon *ngIf="ronaldo.icon" aria-label="ronaldo.caption">{{ronaldo.icon}}</mat-icon>
+        {{ronaldo.caption}}
+      </button>
+
+      <button *ngIf="ronaldo.style == 'fab'" mat-fab-button (click)="ronaldo.action()"
+              color="primary" matTooltip="ronaldo.caption">
+        <mat-icon *ngIf="ronaldo.icon" aria-label="ronaldo.caption">{{ronaldo.icon}}</mat-icon>
+        {{ronaldo.caption}}
+      </button>
+
+      <button *ngIf="ronaldo.style == 'minifab'" mat-mini-fab (click)="ronaldo.action()"
+              color="primary" matTooltip="ronaldo.caption">
+        <mat-icon *ngIf="ronaldo.icon" aria-label="ronaldo.caption">{{ronaldo.icon}}</mat-icon>
+        {{ronaldo.caption}}
+      </button>
+    </div>
+  </div>
+
+  <ng-content></ng-content>
+</div>
